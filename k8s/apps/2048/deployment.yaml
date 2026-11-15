@@ -16,15 +16,17 @@ spec:
       - name: '2048'
         image: ghcr.io/mshire96/2048:v1
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         readinessProbe:            # "is it ready for traffic?"
-          tcpSocket:
-            port: 8080
-          initialDelaySeconds: 5
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 3
           periodSeconds: 10
         livenessProbe:             # "is it still alive, or should it be restarted?"
-          tcpSocket:
-            port: 8080
+          httpGet:
+            path: /healthz
+            port: 80
           initialDelaySeconds: 15
           periodSeconds: 20
         resources:
