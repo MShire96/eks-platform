@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: issuers
+  namespace: argocd          # Applications always live in ArgoCD's namespace
+spec:
+  project: default           # ArgoCD's built-in project
+
+  source:                    
+    repoURL: https://github.com/MShire96/eks-platform.git
+    targetRevision: main     
+    path: k8s/platform/issuers/local
+
+  destination:               # WHERE in the cluster
+    server: https://kubernetes.default.svc   # this cluster, argos in
+
+  syncPolicy:
+    automated:               # apply changes from Git without me clicking Sync
+      prune: true            # if I delete a file from Git, delete it from the cluster too
+      selfHeal: true         # if someone edits the cluster by hand, undo it
