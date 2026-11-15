@@ -4,7 +4,7 @@ metadata:
   name: issuers
   namespace: argocd          # Applications always live in ArgoCD's namespace
   finalizers:
-  - resources-finalizer-argocd-argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default           # ArgoCD's built-in project
   source:                    
