@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: 2048
+  name: '2048'
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: 2048
+      app: '2048'
   template:
     metadata:
       labels:
-        app: 2048
+        app: '2048'
     spec:
       containers:
-      - name: 2048
+      - name: '2048'
         image: ghcr.io/Mshire96/2048:v1
         ports:
         - containerPort: 8080
