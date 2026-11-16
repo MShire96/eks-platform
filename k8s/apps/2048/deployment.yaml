@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: '2048'
-        image: ghcr.io/mshire96/2048:4414e6c
+        image: ghcr.io/mshire96/2048:df58080
         ports:
         - containerPort: 80
         readinessProbe:            # "is it ready for traffic?"
