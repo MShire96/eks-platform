@@ -46,3 +46,7 @@ terraform.rc
 .env
 *.pem
 kubeconfig*
+# MiniStack data, only if persistence writes into the repo
+.ministack/
+tfplan
+*.tfplan
