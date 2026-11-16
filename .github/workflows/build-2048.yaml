@@ -1,0 +1,49 @@
+name: build-2048
+
+on:
+  push:
+    branches: [main]
+    paths: ['app/**']          
+  workflow_dispatch: {}        
+
+permissions:
+  contents: write              
+  packages: write              
+
+concurrency: build-2048        
+
+env:
+  IMAGE: ghcr.io/mshire96/2048
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a # v7.0.1
+
+      - name: Work out the tag
+        run: echo "TAG=${GITHUB_SHA::7}" >> "$GITHUB_ENV"
+
+      - name: Log in to ghcr.io
+        uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: app
+          push: true
+          tags: ${{ env.IMAGE }}:${{ env.TAG }}
+
+      - name: Point the manifest at the new image
+        run: |
+          sed -i "s|image: .*2048:.*|image: ${IMAGE}:${TAG}|" k8s/apps/2048/deployment.yaml
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git commit -am "deploy 2048 ${TAG}"
+          git pull --rebase
+          git push
