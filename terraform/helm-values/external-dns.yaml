@@ -1,0 +1,20 @@
+provider: aws
+
+env:
+- name: AWS_DEFAULT_REGION
+  value: us-east-1
+
+domainFilters:
+- moshire.co.uk
+
+policy: upsert-only
+# EDNS creates and updates record, but never deletes them
+# Safe default
+
+sources:
+  - service
+  - ingress
+
+serviceAccount:
+  create: true
+  name: external-dns

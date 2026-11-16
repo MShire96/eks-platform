@@ -1,0 +1,12 @@
+crds:
+  enabled: true
+
+extraArgs:
+- --dns01-recursive-nameservers="8.8.8.8:53"
+- --dns01-recursive-nameservers-only
+# Make cert-manager check challenge record against public DNS
+# Harmless locally
+
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: <arn>

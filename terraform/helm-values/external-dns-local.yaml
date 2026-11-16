@@ -1,0 +1,15 @@
+txtOwnerId: eks-platform-local
+# Labels record this cluster owns
+
+env:
+  - name: AWS_DEFAULT_REGION
+    value: us-east-1
+  - name: AWS_ENDPOINT_URL
+    value: http://192.168.65.254:4566
+  - name: AWS_ACCESS_KEY_ID
+    value: test
+  - name: AWS_SECRET_ACCESS_KEY
+    value: test
+
+# Pod Identity doesnt work in k3s, so EDNS gets fake test keys, 
+# pointed at MiniSTack. 
