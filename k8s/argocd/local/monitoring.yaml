@@ -14,6 +14,7 @@ spec:
         releaseName: kps
         valueFiles:
           - $values/k8s/platform/monitoring/values.yaml
+          - $values/k8s/platform/monitoring/values-local.yaml
     - repoURL: https://github.com/mshire96/eks-platform.git # For chart to read values from
       targetRevision: main
       ref: values
