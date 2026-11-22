@@ -9,7 +9,7 @@ spec:
     # The chart itself
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
-      targetRevision: 29.49.0
+      targetRevision: 93.9.0
       helm:
         releaseName: kps
         valueFiles:
