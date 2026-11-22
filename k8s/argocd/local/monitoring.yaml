@@ -17,6 +17,9 @@ spec:
     - repoURL: https://github.com/mshire96/eks-platform.git # For chart to read values from
       targetRevision: main
       ref: values
+    - repoURL: https://github.com/mshire96/eks-platform.git
+      targetRevision: main
+      path: k8s/platform/monitoring/extras
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
