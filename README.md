@@ -89,15 +89,3 @@ MiniStack is more forgiving than AWS. Things that work locally but are only trul
 
 Known MiniStack workarounds are commented in the code (for example, `upgrade_policy` is omitted locally because MiniStack has no `UpdateClusterConfig` API).
 
-## Roadmap
-
-- [x] Terraform: VPC, IAM, EKS, remote state
-- [x] Pod Identity roles for cert-manager and ExternalDNS
-- [x] NGINX Ingress, cert-manager and ExternalDNS installed
-- [ ] Test app with HTTPS ingress and DNS record
-- [ ] ArgoCD GitOps deployments
-- [ ] CI/CD: Terraform pipeline, Checkov, Docker build, Trivy, deploy to EKS
-- [ ] Prometheus and Grafana dashboards
-- [ ] Architecture diagram
-- [ ] Real AWS environment (`infra/aws`)
-- [ ] Migrate Ingress to Gateway API
